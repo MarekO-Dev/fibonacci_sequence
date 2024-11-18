@@ -55,7 +55,7 @@ class FibonacciSequence:
         
         self.sequence_items: list = []
         self.limit: int = limit - len(initial_items)
-    
+        
     def __call__(self) -> Any:
         
         values_index = 0
