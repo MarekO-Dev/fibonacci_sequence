@@ -7,15 +7,18 @@ Features:
     - Returning the actual sequence values as a list
 
 Example usage:
+        1. Import FibonacciSequence class
 
-        1. Create new Object
+        from fibonacci_sequence import FibonacciSequence
+
+        2. Create new Object
 
         <object_name> = FibonacciSequence([int, int], int)
 
-        2. Call the object to view the sequence output into terminal 
+        3. Call the object to view the sequence output into terminal 
 
         <objectname>()
 
-        3. call the object and chain .return_sequence property for the actual sequence list
+        4. call the object and chain .return_sequence property for the actual sequence list
 
         fibonacci_sequence_list = <objectname>().return_sequence
