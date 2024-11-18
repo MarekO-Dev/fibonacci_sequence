@@ -1,12 +1,12 @@
-###Description:
+### Description:
 
 fibonacci sequence is a tool that has various different features related to fibonacci sequence.
 
-###Features:
+### Features:
     - Viewing fibonacci sequence given 2 starting values and limit of how many items in the sequence should there be
     - Returning the actual sequence values as a list
 
-###Example usage:
+### Example usage:
 ```python
         """
         1. Import FibonacciSequence class
