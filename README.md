@@ -7,6 +7,7 @@ Features:
     - Returning the actual sequence values as a list
 
 Example usage:
+
         1. Import FibonacciSequence class
 
         from fibonacci_sequence import FibonacciSequence
