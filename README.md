@@ -11,7 +11,11 @@ A tool that has various different features related to fibonacci sequence.
 
 1. Import FibonacciSequence class
 
+```python
+
 from fibonacci_sequence import FibonacciSequence
+
+```
 
 2. Create new Object
 
