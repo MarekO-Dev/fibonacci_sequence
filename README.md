@@ -15,12 +15,24 @@ from fibonacci_sequence import FibonacciSequence
 
 2. Create new Object
 
+```python
+
 <object_name> = FibonacciSequence([int, int], int)
+
+```
 
 3. Call the object to view the sequence output into terminal 
 
-<objectname>()
+```python
+
+<objectname> ()
+
+```
 
 4. call the object and chain .return_sequence property for the actual sequence list
 
+```python
+
 fibonacci_sequence_list = <objectname>().return_sequence
+
+```
