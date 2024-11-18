@@ -7,7 +7,8 @@ Features:
     - Returning the actual sequence values as a list
 
 Example usage:
-
+```python
+        """
         1. Import FibonacciSequence class
 
         from fibonacci_sequence import FibonacciSequence
@@ -23,3 +24,6 @@ Example usage:
         4. call the object and chain .return_sequence property for the actual sequence list
 
         fibonacci_sequence_list = <objectname>().return_sequence
+        """
+
+```
