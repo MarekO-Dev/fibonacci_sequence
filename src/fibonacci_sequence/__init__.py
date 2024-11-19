@@ -1,40 +1,7 @@
 from typing import Any
-import numpy as np
-
+import pandas as pd
 
 class FibonacciSequence:
-    """
-        FibonacciSequence is a tool for getting Fibonacci sequence numbers
-
-        ### Example usage:
-
-        ```python
-
-            # This will get 10 fibonacci sequence values including initial values [0, 1]
-            new_fibo_sequence = FibonacciSequence([0, 1], 10)
-
-            # Call it with printout=True for printed output to the terminal in float format
-            new_fibo_sequence(printout=True)
-
-            Terminal output:
-                '''
-                    .......0.0000....... <-- initial_value [0]
-                    .......1.0000....... <-- initial_value [1]
-                    .......1.0000.......
-                    .......2.0000.......
-                    .......3.0000.......
-                    .......5.0000.......
-                    .......8.0000.......
-                    ......13.0000.......
-                    ......21.0000.......
-                    ......34.0000.......
-                '''
-
-            # Call it and chain .return_sequence property for the actual sequence
-
-            the_sequence = new_fibo_sequence().return_sequence
-        ```
-    """
     
     def __init__(self, 
                  initial_items: list[float] = [float(0), float(1)], 
@@ -89,7 +56,6 @@ class FibonacciSequence:
             for val in self.sequence_items:
                 print(f"{float(val):.^20.4f}")
 
-
         return self
     
     def printout_sequence_ratio(self):
@@ -102,6 +68,11 @@ class FibonacciSequence:
 
     @property
     def return_sequence(self) -> list:
+        
+        """
+            ### Return sequence as list
+        """
+
         return self.sequence_items
 
     @property
@@ -129,7 +100,7 @@ class FibonacciSequence:
         return new_sequence
     
     @property
-    def return_ratios_dict(self) -> list:
+    def return_ratios_dict(self) -> dict:
         
         new_sequence: dict = {}
         
@@ -140,9 +111,9 @@ class FibonacciSequence:
             
             try:
                 ratio = (second := self.sequence_items[end]) / (first := self.sequence_items[start])
-                new_sequence[f"{first}-{second}"] = ratio
+                new_sequence[f"{first:.0f}-{second:.0f}"] = ratio
             except ZeroDivisionError:
-                new_sequence[f"{first}-{second}"] = None
+                new_sequence[f"{first:.0f}-{second:.0f}"] = 0
 
             start += 1
             end += 1
@@ -152,3 +123,44 @@ class FibonacciSequence:
 
         return new_sequence
 
+    @property
+    def return_ratios_dict_reversed(self) -> dict:
+        
+        new_sequence: dict = {}
+        
+        start = 0
+        end = 1
+
+        for _ in self.sequence_items:
+            
+            try:
+                ratio = (first := self.sequence_items[start]) / (second := self.sequence_items[end])
+                new_sequence[f"{first:.0f}-{second:.0f}"] = ratio
+            except ZeroDivisionError:
+                new_sequence[f"{first:.0f}-{second:.0f}"] = 0
+
+            start += 1
+            end += 1
+
+            if end >= len(self.sequence_items):
+                break
+
+        return new_sequence
+
+    @property
+    def return_ratios_df(self):
+
+        series_values = pd.Series(self.return_ratios_dict.keys())
+        series_ratios = pd.Series(self.return_ratios_dict.values())
+        df = pd.DataFrame({"Value": series_values, "Ratio": series_ratios})
+
+        return df
+
+    @property
+    def return_ratios_df_reversed(self):
+        
+        series_values = pd.Series(self.return_ratios_dict_reversed.keys())
+        series_ratios = pd.Series(self.return_ratios_dict_reversed.values())
+        df = pd.DataFrame({"Value": series_values, "Ratio": series_ratios})
+
+        return df
