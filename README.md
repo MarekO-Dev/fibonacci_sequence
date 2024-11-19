@@ -77,3 +77,14 @@ A tool that has various different features related to fibonacci sequence.
     python3 src
 
     ```
+
+#### Windows
+
+    TODO:
+
+#### MacOS
+
+    TODO:
+
+
+$${\color{orange}Orange}$$
