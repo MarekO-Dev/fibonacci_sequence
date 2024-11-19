@@ -6,37 +6,17 @@ A tool that has various different features related to fibonacci sequence.
 
 - Viewing fibonacci sequence given 2 starting values and limit of how many items in the sequence should there be
 - Returning the actual sequence values as a list
+- Returning sequence as list or dict
+- Returning sequence ratios and reversed ratios as pandas dataframe
 
-### Example usage:
+### Guide how to get all to work:
 
-1. Import FibonacciSequence class
+#### Linux
 
-```python
+1. Create a new folder "FOLDER_NAME"
+2. Navigate "FOLDER_NAME" this folder in terminal:
+    ```bash
+    
+    cd PATH/TO/YOUR/FOLDER_NAME
 
-from fibonacci_sequence import FibonacciSequence
-
-```
-
-2. Create new Object
-
-```python
-
-<object_name> = FibonacciSequence([int, int], int)
-
-```
-
-3. Call the object to view the sequence output into terminal 
-
-```python
-
-<objectname> ()
-
-```
-
-4. call the object and chain .return_sequence property for the actual sequence list
-
-```python
-
-fibonacci_sequence_list = <objectname>().return_sequence
-
-```
+    ```
