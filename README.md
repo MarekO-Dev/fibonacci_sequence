@@ -65,7 +65,7 @@ A tool that has various different features related to fibonacci sequence.
 
     ```bash
 
-    python3 -m pip -r install requirements.txt
+    python3 -m pip install -r requirements.txt
 
     ```
 
