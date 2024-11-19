@@ -11,7 +11,7 @@ A tool that has various different features related to fibonacci sequence.
 
 ### Guide how to get all to work:
 
-#### Linux
+#### $${\color{orange}Linux}$$
 
 1. Create a new folder "FOLDER_NAME":
     
@@ -78,13 +78,12 @@ A tool that has various different features related to fibonacci sequence.
 
     ```
 
-#### Windows
+#### $${\color{orange}Windows}$$
 
     TODO:
 
-#### MacOS
+#### $${\color{orange}MacOS}$$
 
     TODO:
 
 
-$${\color{orange}Orange}$$
