@@ -13,10 +13,34 @@ A tool that has various different features related to fibonacci sequence.
 
 #### Linux
 
-1. Create a new folder "FOLDER_NAME"
+1. Create a new folder "FOLDER_NAME":
+    
+    ```bash
+
+        mkdir PATH/TO/YOUR/FOLDER_NAME
+
+    ```
+    
 2. Navigate "FOLDER_NAME" this folder in terminal:
+    
     ```bash
     
     cd PATH/TO/YOUR/FOLDER_NAME
+
+    ```
+
+3. Clone repository to this above folder
+
+    ```bash
+
+    git clone https://github.com/MarekO-Dev/fibonacci_sequence
+
+
+    ```
+
+    ```
+    If you don't have git installed visit: 
+    
+    https://git-scm.com/book/en/v2/Getting-Started-Installing-Git
 
     ```
