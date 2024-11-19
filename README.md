@@ -29,11 +29,12 @@ A tool that has various different features related to fibonacci sequence.
 
     ```
 
-3. Clone repository to this above folder
+3. Clone repository to this above folder and cd into it
 
     ```bash
 
     git clone https://github.com/MarekO-Dev/fibonacci_sequence
+    cd fibonacci_sequence
 
 
     ```
@@ -41,5 +42,38 @@ A tool that has various different features related to fibonacci sequence.
 
     ```
     https://git-scm.com/book/en/v2/Getting-Started-Installing-Git
+
+    ```
+
+4. Create virtual enviroment using venv (It comes as standard with python)
+
+    ```bash
+
+    python3 -m venv NAME_OF_YOUR_VENV
+
+    ```
+
+5. Enter your venv
+
+    ```bash
+
+    source NAME_OF_YOUR_VENV/bin/activate
+
+    ```
+
+6. Install requirements:
+
+    ```bash
+
+    python3 -m pip -r install requirements.txt
+
+    ```
+
+7. And it should all be ready now. Run example in __main__.py
+
+    ```bash
+
+    # Will run __main__.py inside src folder
+    python3 src
 
     ```
