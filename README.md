@@ -37,10 +37,9 @@ A tool that has various different features related to fibonacci sequence.
 
 
     ```
+    -   If you don't have git installed visit: 
 
     ```
-    If you don't have git installed visit: 
-    
     https://git-scm.com/book/en/v2/Getting-Started-Installing-Git
 
     ```
