@@ -1,13 +1,21 @@
 from typing import Any
 import pandas as pd
+import matplotlib.pyplot as plt
 
-class SequenceItem:
 
-    def __init__(self, seq: tuple) -> None:
-        self.items = dict()
 
-    def __call__(self, ) -> Any:
-        pass
+class Viewer:
+    
+    @classmethod
+    def plot(cls, df):
+        print("Viewed df: \n", df)
+        print(len(df))
+        
+        fig = plt.subplot()
+        fig.plot(df["Ratio"])
+        fig.set_xticks(df.index)
+        fig.set_xticklabels(df["Number1"])
+        plt.show()
 
 class FibonacciSequence:
     def __init__(self,
