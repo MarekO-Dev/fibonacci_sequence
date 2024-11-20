@@ -1,6 +1,14 @@
 from typing import Any
 import pandas as pd
 
+class SequenceItem:
+
+    def __init__(self, seq: tuple) -> None:
+        self.items = dict()
+
+    def __call__(self, ) -> Any:
+        pass
+
 class FibonacciSequence:
     def __init__(self,
                  initial_sequence: tuple[float, float] = (float(0), float(1)),
@@ -39,10 +47,14 @@ class FibonacciSequence:
 
     def ratios_dict(self, *, reversed: bool = False) -> dict:
         
-        new_sequence: dict = {}
+        _new_sequence: dict = {
+            "Number1": [],
+            "Number2": [],
+            "Ratio": []
+        }
         
-        start = 0
-        end = 1
+        _start: int = 0
+        _end: int = 1
 
         for _ in self.initial_sequence:
             
@@ -50,33 +62,44 @@ class FibonacciSequence:
                 
                 if not reversed:
 
-                    ratio = (second := self.initial_sequence[end]) / (first := self.initial_sequence[start])
+                    ratio = (second := self.initial_sequence[_end]) / (first := self.initial_sequence[_start])
                 else:
-                    ratio = (second := self.initial_sequence[start]) / (first := self.initial_sequence[end])
-                new_sequence[f"({first:_^8.0f} {second:_^8.0f})"] = ratio
+                    ratio = (second := self.initial_sequence[_start]) / (first := self.initial_sequence[_end])
+                
+                _new_sequence["Number1"].append(first)
+                _new_sequence["Number2"].append(second)
+                _new_sequence["Ratio"].append(ratio)
+                
             except ZeroDivisionError:
-                new_sequence[f"({first:_^8.0f} {second:_^8.0f})"] = 0
 
-            start += 1
-            end += 1
+                _new_sequence["Number1"].append(first)
+                _new_sequence["Number2"].append(second)
+                _new_sequence["Ratio"].append(0)
 
-            if end >= len(self.initial_sequence):
+            _start += 1
+            _end += 1
+
+            if _end >= len(self.initial_sequence):
                 break
 
-        return new_sequence
+        return _new_sequence
     
+    def _get_dict(self, reversed = False):
+
+        ratios_dict = self.ratios_dict(reversed = reversed)
+
+        series_numbers1 = pd.Series(ratios_dict["Number1"])
+        series_numbers2 = pd.Series(ratios_dict["Number2"])
+        series_ratios = pd.Series(ratios_dict["Ratio"])
+        
+        return pd.DataFrame({"Number1": series_numbers1, "Number2": series_numbers2, "Ratio": series_ratios})
+
     @property
     def ratios_df(self):
 
-        series_values = pd.Series(self.ratios_dict().keys())
-        series_ratios = pd.Series(self.ratios_dict().values())
-        
-        return pd.DataFrame({"Numbers": series_values, "Ratio": series_ratios})
+        return self._get_dict()
 
     @property
     def ratios_df_reversed(self):
         
-        series_values = pd.Series(self.ratios_dict(reversed = True).keys())
-        series_ratios = pd.Series(self.ratios_dict(reversed = True).values())
-        
-        return pd.DataFrame({"Numbers": series_values, "Ratio": series_ratios})
+        return self._get_dict(reversed = True)
