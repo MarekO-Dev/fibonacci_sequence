@@ -6,8 +6,7 @@ A tool that has various different features related to fibonacci sequence.
 
 - Viewing fibonacci sequence given 2 starting values and limit of how many items in the sequence should there be
 - Returning the actual sequence values as a list
-- Returning sequence as list or dict
-- Returning sequence ratios and reversed ratios as pandas dataframe
+- Various visualisation options of fibonacci sequence or ratios
 
 ### Guide how to get all to work:
 
@@ -87,3 +86,73 @@ A tool that has various different features related to fibonacci sequence.
     TODO:
 
 
+### How to use
+
+1. Firstly you have to create a sequence object(s) and you do it this way:
+
+```python
+
+FibonacciSequence(**{
+    "starts_with": (0.0, 1),
+    "length": 10
+})
+
+```
+
+And if you would like to create multiple for example for some cool visualisations you can do it by calling multiples of the above like this:
+
+```python
+
+FibonacciSequence(**{
+    "starts_with": (0.0, 1),
+    "length": 10
+})
+
+FibonacciSequence(**{
+    "starts_with": (0.0, 1),
+    "length": 10
+})
+
+
+```
+
+*Note: You don't have to assign these to variables, it is simply not needed
+
+Or you can chain it like this:
+
+```python
+
+FibonacciSequence(**{
+    "starts_with": (0.0, 1),
+    "length": 10
+})(**{
+    "starts_with": (0.1, 1),
+    "length": 10
+})
+
+FibonacciSequence(**{
+    "starts_with": (0.0, 1),
+    "length": 10
+})(**{
+    "starts_with": (0.1, 1),
+    "length": 10
+})(**{
+    "starts_with": (0.1, 1),
+    "length": 10
+})(**{
+    "starts_with": (0.1, 1),
+    "length": 10
+})
+
+
+
+# Or mixture of both :)
+
+```
+
+2. Now you can do various things like viewing some ratios or actual sequence or you can head straight to visualisations. You do this by:
+
+    a) Viewing various stats in the terminal
+        To be continued...
+    b) Visualising some plots
+        To be continued...
