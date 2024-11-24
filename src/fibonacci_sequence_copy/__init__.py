@@ -66,11 +66,13 @@ class FibonacciSequence:
             starts_with: tuple[float, float]
             ```
         """
+
         self._sequence = HelperMaths.to_list(*starts_with) # 
         self._initial_numbers = self.sequence[0:2]
         self._length = length
 
         self.populate()
+        print(Sequences.get_all())
         
 
     def __call__(self, starts_with: tuple[float, float], length = 10) -> Any:
