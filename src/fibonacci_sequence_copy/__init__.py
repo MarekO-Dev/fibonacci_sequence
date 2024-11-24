@@ -14,11 +14,6 @@ class HelperMaths:
 
         return [n1, n2]
 
-
-class Viewer:
-    pass
-
-
 class Sequences:
 
     _all_instances: list = []

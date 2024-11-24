@@ -1,8 +1,15 @@
-from fibonacci_sequence_copy import FibonacciSequence, Sequences, Viewer
+from fibonacci_sequence_copy import FibonacciSequence, Sequences
 from tkinter import *
 from tkinter import ttk, font as tkFont
 
+class Viewer(Tk):
+    def __init__(self, screenName: str | None = None, baseName: str | None = None, className: str = "Tk", useTk: bool = True, sync: bool = False, use: str | None = None) -> None:
+        super().__init__(screenName, baseName, className, useTk, sync, use)
 
+    @classmethod
+    def start(cls):
+        cls().mainloop()
+        
 
 class App(Tk):
     def __init__(self, appname):
@@ -12,7 +19,11 @@ class App(Tk):
         self.sequence_repr = StringVar(self)
 
     def __call__(self):
-        helv20 = tkFont.Font(family='Helvetica', size=20, weight='bold')
+        global_fonts = {
+            "helv14": tkFont.Font(family='Helvetica', size=14, weight='normal'),
+            "helv18": tkFont.Font(family='Helvetica', size=18, weight='normal')
+        }
+
         initial_screen_elements = {
             "label_for_starts_with_first": Label,
             "label_for_starts_with_second": Label,
@@ -22,47 +33,67 @@ class App(Tk):
             "view_sequences_button": Button
         }
         
-        def generate_labels():
+        def display_labels(wrapper):
 
             initial_screen_elements["label_for_starts_with_first"]\
-                (self, text="Starts with: (First)").grid(row = 0, column = 0)
+                (wrapper, text="Starts with: (First)").grid(row = 0, column = 0)
             initial_screen_elements["label_for_starts_with_second"]\
-                (self, text="Starts with: (Second)").grid(row = 1, column = 0)
+                (wrapper, text="Starts with: (Second)").grid(row = 1, column = 0)
             
-        def generate_entry_fields():
+        def display_entry_fields(wrapper):
+            
+            global_font_options = {
+                "master": wrapper,
+                "width": 5
+            }
 
             initial_screen_elements["entry_for_starts_with_first"]\
-                (self, width = 5).grid(row = 0, column = 1) # needs IntVar
+                (**global_font_options).grid(row = 0, column = 1) # needs IntVar
             initial_screen_elements["entry_for_starts_with_first"]\
-                (self).grid(row = 1, column = 1) # needs IntVar
+                (**global_font_options).grid(row = 1, column = 1) # needs IntVar
             
-        def generate_buttons():
+        def display_buttons(wrapper):
+            
+            global_button_options = {
+                "master": wrapper
+            }
 
             initial_screen_elements["generate_new_sequence_button"]\
-                (self, text = "Generate new Sequence", cnf={
+                (**global_button_options, text = "Generate new Sequence", cnf={
                     "bg": "#9e8888"
                 })\
                     .grid(row = 2, column = 0, columnspan=2)
+            
             initial_screen_elements["view_sequences_button"]\
-                (self, text = "View", cnf={
+                (**global_button_options, text = "View", cnf={
                     "bg": "#0f0",
                     "padx": 30,
                     "pady": 30,
-                })\
+                }, command=lambda: Viewer.start())\
                     .grid(row = 0, column = 2, rowspan=3)
 
-        def set_elements_fonts():
-            aggregated_elements = self.winfo_children()
+        def set_elements_fonts(wrapper):
+            aggregated_elements = wrapper.winfo_children()
             for element in aggregated_elements:
-                element.configure(font = helv20)
+                element.configure(font = global_fonts["helv14"])
 
         def start_initial_screen():
-            generate_labels()
-            generate_entry_fields()
-            generate_buttons()
+            """
+            Init function for the main screen
+
+            1. It creates a wrapper for the elements
+            2. Displays elements on screen
+            
+            """
+            wrapper = Frame(self)
+            wrapper.pack(expand = True)
+
+            display_labels(wrapper)
+            display_entry_fields(wrapper)
+            display_buttons(wrapper)
 
             #below must come after
-            set_elements_fonts()
+            set_elements_fonts(wrapper)
             
         # Init 
         start_initial_screen()
