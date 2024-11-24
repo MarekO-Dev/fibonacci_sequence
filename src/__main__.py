@@ -3,22 +3,47 @@ from tkinter import *
 from tkinter import ttk, font as tkFont
 
 class Viewer(Tk):
-    def __init__(self, screenName: str | None = None, baseName: str | None = None, className: str = "Tk", useTk: bool = True, sync: bool = False, use: str | None = None) -> None:
+    def __init__(
+            self, 
+            screenName: str | None = None, 
+            baseName: str | None = None, 
+            className: str = "Tk", 
+            useTk: bool = True, 
+            sync: bool = False, 
+            use: str | None = None) -> None:
         super().__init__(screenName, baseName, className, useTk, sync, use)
 
     @classmethod
     def start(cls):
-        cls().mainloop()
+        instance = cls()
+        instance.title("View sequence id: #")
+        #Test only
+        print(Sequences.get_all())
+        #Test only
+        instance.mainloop()
         
 
 class App(Tk):
-    def __init__(self, appname):
-        super().__init__()
+    global first
+    global second
+
+    def __init__(
+            self,
+            appname,
+            screenName: str | None = None, 
+            baseName: str | None = None, 
+            className: str = "Tk", 
+            useTk: bool = True, 
+            sync: bool = False, 
+            use: str | None = None) -> None:
+        super().__init__(screenName, baseName, className, useTk, sync, use)
         self.title(appname)
         self.geometry("800x600")
-        self.sequence_repr = StringVar(self)
 
     def __call__(self):
+        first = StringVar(self)
+        second = StringVar(self)
+
         global_fonts = {
             "helv14": tkFont.Font(family='Helvetica', size=14, weight='normal'),
             "helv18": tkFont.Font(family='Helvetica', size=18, weight='normal')
@@ -32,28 +57,44 @@ class App(Tk):
             "generate_new_sequence_button": Button,
             "view_sequences_button": Button
         }
-        
-        def display_labels(wrapper):
 
+        def display_labels(wrapper):
+            """
+
+                LABELS
+            
+            """
             initial_screen_elements["label_for_starts_with_first"]\
                 (wrapper, text="Starts with: (First)").grid(row = 0, column = 0)
             initial_screen_elements["label_for_starts_with_second"]\
                 (wrapper, text="Starts with: (Second)").grid(row = 1, column = 0)
             
         def display_entry_fields(wrapper):
+            """
+
+                ENTRY FIELDS
             
+            """
             global_font_options = {
                 "master": wrapper,
                 "width": 5
             }
 
             initial_screen_elements["entry_for_starts_with_first"]\
-                (**global_font_options).grid(row = 0, column = 1) # needs IntVar
+                (**global_font_options, textvariable=first).grid(row = 0, column = 1) # needs IntVar
             initial_screen_elements["entry_for_starts_with_first"]\
-                (**global_font_options).grid(row = 1, column = 1) # needs IntVar
+                (**global_font_options, textvariable=second).grid(row = 1, column = 1) # needs IntVar
             
         def display_buttons(wrapper):
+            """
+
+                BUTTONS
             
+            """
+            def sendoff_new_sequence():
+                print(first.get())
+                new_sequence = FibonacciSequence(starts_with=(first.get(), second.get()))
+
             global_button_options = {
                 "master": wrapper
             }
@@ -61,7 +102,8 @@ class App(Tk):
             initial_screen_elements["generate_new_sequence_button"]\
                 (**global_button_options, text = "Generate new Sequence", cnf={
                     "bg": "#9e8888"
-                })\
+                }
+                ,command = lambda: sendoff_new_sequence())\
                     .grid(row = 2, column = 0, columnspan=2)
             
             initial_screen_elements["view_sequences_button"]\
