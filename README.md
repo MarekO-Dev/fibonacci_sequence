@@ -1,6 +1,6 @@
 ### Description:
 
-A tool that has various different features related to fibonacci sequence.
+A tool that has various features related to fibonacci sequence.
 
 ### Features:
 
