@@ -76,6 +76,10 @@ A tool that has various features related to fibonacci sequence.
     # Will run __main__.py inside src folder
     python3 src
 
+    # Or the following to avoid pycache folder being created
+
+    python3 -B src 
+
     ```
 
 #### $${\color{orange}Windows}$$

@@ -2,22 +2,23 @@ from typing import Any
 import pandas as pd
 import matplotlib.pyplot as plt
 
-
-
 class Viewer:
-    
+    '''Class to view the Fibonacci sequence ratios in a plot.'''
     @classmethod
-    def plot(cls, df):
-        print("Viewed df: \n", df)
-        print(len(df))
+    def plot(cls, dfs: list[dict]):
+        print("Viewed df: \n", dfs[0])
+        print(len(dfs[0]))
         
         fig = plt.subplot()
-        fig.plot(df["Ratio"])
-        fig.set_xticks(df.index)
-        fig.set_xticklabels(df["Number1"])
+        for df in dfs:
+            fig.set_title("Fibonacci Sequence Ratios")
+            fig.plot(df["Ratio"])
+            fig.set_xticks(df.index)
+            fig.set_xticklabels(df["Number1"])
         plt.show()
 
 class FibonacciSequence:
+    '''Class to generate Fibonacci sequence ratios.'''
     def __init__(self,
                  initial_sequence: tuple[float, float] = (float(0), float(1)),
                  *,
